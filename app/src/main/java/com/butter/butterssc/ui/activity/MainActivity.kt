@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.butter.butterssc.R
 import com.butter.butterssc.adapter.HomeViewPagerAdapter
 import com.butter.butterssc.ui.view.BaseHomeView
@@ -43,7 +44,9 @@ class MainActivity : AppCompatActivity() {
         mContext = this
         mViews = listOf(TrendView(mContext), NewsView(mContext), LotteryView(mContext))
         mHomeViewAdapter = HomeViewPagerAdapter(mContext, mViews)
+        view_pager.offscreenPageLimit = 4
         view_pager.adapter = mHomeViewAdapter
+        mViews[0].loadData()
         view_pager.setOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }

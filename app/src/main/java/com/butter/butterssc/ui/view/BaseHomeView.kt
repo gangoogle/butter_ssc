@@ -14,6 +14,8 @@ abstract class BaseHomeView(val context: Context) {
 
     fun loadData() {
         if (!isLoad) {
+            //防止view没有加载
+            getView()
             initData()
             isLoad = true
         }
