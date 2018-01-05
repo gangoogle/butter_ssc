@@ -14,14 +14,15 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/ll_status"
+            android:id="@+id/ll_status_t"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/colorMain"
             >
 
             <TextView
-                android:id="@+id/tv_title"
+                android:lines="2"
+                android:id="@+id/tv_title_t"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"

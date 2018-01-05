@@ -1,9 +1,22 @@
 package com.butter.butterssc.ui.view
 
 import android.content.Context
+import android.support.design.widget.Snackbar
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import android.widget.TextView
+import android.widget.Toast
 import com.butter.butterssc.R
+import com.butter.butterssc.R.id.fab
+import com.butter.butterssc.R.id.rc_view
+import com.butter.butterssc.adapter.RCLottertAdapter
+import com.butter.butterssc.adapter.RCNewsAdapter
+import com.butter.butterssc.constant.JDNEWS_APPKEY
+import com.butter.butterssc.constant.NEWS_URL
+import com.butter.butterssc.model.response.BaseNewsResponse
+import com.butter.butterssc.model.response.NewsResponse
+import com.butter.butterssc.net.Api
+import com.butter.butterssc.net.RetrofitNetHelper
+import kotlinx.android.synthetic.main.view_news.view.*
 
 /**
  * Created by zgyi on 2018-01-03.
@@ -16,10 +29,25 @@ class NewsView(context: Context) : BaseHomeView(context) {
         if (mView == null) {
             mView = View.inflate(context, R.layout.view_news, null)
         }
-        return mView?:View(context)
+        return mView ?: View(context)
     }
 
 
     override fun initData() {
+        val callResponse = RetrofitNetHelper.getInstance(context)
+                .getAPIService(Api::class.java)
+                .requestNews(NEWS_URL, "财经", "40", "0", JDNEWS_APPKEY)
+        RetrofitNetHelper.getInstance(context)
+                .enqueueNewsCall(callResponse, object : RetrofitNetHelper.RetrofitNewsCallBack<NewsResponse> {
+                    override fun onSuccess(baseResp: BaseNewsResponse<NewsResponse>) {
+                        mView?.rc_view?.layoutManager = LinearLayoutManager(context)
+                        mView?.rc_view?.adapter = RCNewsAdapter(context, baseResp.result.result.list)
+                    }
+
+                    override fun onFailure(error: String) {
+                        Snackbar.make(mView?.rc_view!!, error, Snackbar.LENGTH_SHORT).show()
+                        mView?.rc_view?.adapter = RCNewsAdapter(context, arrayListOf<NewsResponse.News>())
+                    }
+                })
     }
 }

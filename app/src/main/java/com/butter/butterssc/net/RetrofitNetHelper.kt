@@ -2,6 +2,7 @@ package com.butter.butterssc.net
 
 import android.content.Context
 import com.butter.butterssc.constant.SERVER_URL
+import com.butter.butterssc.model.response.BaseNewsResponse
 import com.butter.butterssc.model.response.BaseResp
 import com.butter.butterssc.net.BasicParamsInterceptor
 import okhttp3.Cache
@@ -113,11 +114,52 @@ class RetrofitNetHelper private constructor(val context: Context) {
         })
     }
 
+    fun <D> enqueueNewsCall(call: Call<BaseNewsResponse<D>>, retrofitCallBack: RetrofitNewsCallBack<D>?) {
+
+        call.enqueue(object : Callback<BaseNewsResponse<D>> {
+
+            override fun onResponse(call: Call<BaseNewsResponse<D>>, response: Response<BaseNewsResponse<D>>) {
+                val resp = response.body()
+                if (resp == null) {
+                    if (retrofitCallBack != null) {
+                        retrofitCallBack!!.onFailure("暂无数据")
+                    }
+                    return
+                }
+
+                if (!resp.code.equals("10000")) {
+                    retrofitCallBack?.onFailure(resp.msg)
+                    return
+                }
+                if (retrofitCallBack != null) {
+                    retrofitCallBack!!.onSuccess(resp)
+                }
+
+            }
+
+            override fun onFailure(call: Call<BaseNewsResponse<D>>, t: Throwable) {
+                //   ToastMaker.makeToast(mContext, "网络错误，请重试！", Toast.LENGTH_SHORT);
+                if (retrofitCallBack != null) {
+                    retrofitCallBack!!.onFailure(t.toString())
+                }
+            }
+        })
+    }
+
+
     //异步特殊处理后回调
     interface RetrofitCallBack<D> {
         fun onSuccess(baseResp: BaseResp<D>)
         fun onFailure(error: String)
     }
+
+
+    //异步特殊处理后回调
+    interface RetrofitNewsCallBack<D> {
+        fun onSuccess(baseResp: BaseNewsResponse<D>)
+        fun onFailure(error: String)
+    }
+
 
     //获取相应的APIService对象
     public fun <T> getAPIService(service: Class<T>): T {

@@ -19,11 +19,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:textColor="@color/white"
+            android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="趋势"
+            android:textColor="@color/white"
             android:textSize="18sp"/>
     </LinearLayout>
 

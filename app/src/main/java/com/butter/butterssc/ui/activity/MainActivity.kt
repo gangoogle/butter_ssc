@@ -1,13 +1,16 @@
 package com.butter.butterssc.ui.activity
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.butter.butterssc.R
 import com.butter.butterssc.adapter.HomeViewPagerAdapter
+import com.butter.butterssc.data.getHomeTitleData
 import com.butter.butterssc.ui.view.BaseHomeView
 import com.butter.butterssc.ui.view.LotteryView
 import com.butter.butterssc.ui.view.NewsView
@@ -61,7 +64,11 @@ class MainActivity : AppCompatActivity() {
                     2 -> navigation.selectedItemId = R.id.navigation_notifications
                 }
                 mViews[position].loadData()
-
+                tv_title.text = getHomeTitleData()[position].title
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ll_status.setBackgroundColor(mContext.resources.getColor(getHomeTitleData()[position].color))
+                    (mContext as MainActivity).getWindow().setStatusBarColor(mContext.resources.getColor(getHomeTitleData()[position].color))
+                }
             }
         })
     }

@@ -12,7 +12,7 @@ class TrendDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_trend_detail)
         val bundle = intent.getBundleExtra("data")
         val title = bundle.getString("name")
-        tv_title.text = title
+        tv_title_t.text = title
         webview.loadHtml(bundle.getString("url"))
         fab.setOnClickListener { finish() }
     }
