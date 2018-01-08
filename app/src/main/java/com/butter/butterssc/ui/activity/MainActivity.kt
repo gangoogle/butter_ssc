@@ -1,6 +1,7 @@
 package com.butter.butterssc.ui.activity
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
@@ -71,5 +72,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+        iv_info.setOnClickListener {
+            startActivity(Intent(mContext, SettingsActivity::class.java))
+        }
     }
 }

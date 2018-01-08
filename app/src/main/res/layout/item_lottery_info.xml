@@ -25,7 +25,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/card_title_a"
+                android:background="@color/colorMain"
                 android:orientation="horizontal"
                 android:padding="5dp">
 
@@ -115,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:text="开奖时间："
                     android:textColor="@color/ub_gray_a"
-                    android:textSize="14sp"/>
+                    android:textSize="12sp"/>
 
                 <TextView
                     android:id="@+id/tv_time"
@@ -123,7 +123,7 @@
                     android:layout_height="wrap_content"
                     android:text="2017-12-28 14:40:40"
                     android:textColor="@color/ub_gray_a"
-                    android:textSize="14sp"/>
+                    android:textSize="12sp"/>
             </LinearLayout>
         </LinearLayout>
 

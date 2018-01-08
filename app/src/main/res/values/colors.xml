@@ -6,7 +6,6 @@
     <color name="colorMain">#b8152d</color>
 
 
-
     <color name="ub_gray">#b5b5b5</color>
     <color name="ub_gray_a">#696969</color>
     <color name="card_title">#4aa8a7</color>
@@ -169,4 +168,6 @@
     <color name="black">#000000</color><!--黑色 -->
 
     <color name="mdWhite">#fafafa</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>
