@@ -10,7 +10,7 @@
          TextureView, etc. -->
     <ImageView
         android:layout_gravity="center"
-        android:src="@mipmap/ic_cai"
+        android:src="@mipmap/icon"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:gravity="center"
