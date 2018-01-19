@@ -29,6 +29,8 @@ class RCNewsAdapter(val context: Context, val newsArray: ArrayList<NewsResponse.
             val intent = Intent(context, NewsDetailActivity::class.java)
             intent.putExtra("content", newsArray[position].content)
             intent.putExtra("title", newsArray[position].title)
+            intent.putExtra("src", newsArray[position].src)
+            intent.putExtra("time", newsArray[position].time)
             context.startActivity(intent)
         }
     }

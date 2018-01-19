@@ -12,11 +12,15 @@ import android.util.Log
 import com.butter.butterssc.R
 import com.butter.butterssc.adapter.HomeViewPagerAdapter
 import com.butter.butterssc.data.getHomeTitleData
+import com.butter.butterssc.model.FinishEvent
 import com.butter.butterssc.ui.view.BaseHomeView
 import com.butter.butterssc.ui.view.LotteryView
 import com.butter.butterssc.ui.view.NewsView
 import com.butter.butterssc.ui.view.TrendView
 import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class MainActivity : AppCompatActivity() {
     lateinit var mContext: Context
@@ -46,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         mContext = this
+        EventBus.getDefault().register(this)
         mViews = listOf(TrendView(mContext), NewsView(mContext), LotteryView(mContext))
         mHomeViewAdapter = HomeViewPagerAdapter(mContext, mViews)
         view_pager.offscreenPageLimit = 4
@@ -73,7 +78,17 @@ class MainActivity : AppCompatActivity() {
             }
         })
         iv_info.setOnClickListener {
-            startActivity(Intent(mContext, SettingsActivity::class.java))
+            startActivity(Intent(mContext, SettingActivity2::class.java))
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onReEventFinish(event:FinishEvent){
+        finish()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 }

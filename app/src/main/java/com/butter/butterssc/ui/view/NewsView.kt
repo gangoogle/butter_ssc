@@ -24,27 +24,38 @@ import kotlinx.android.synthetic.main.view_news.view.*
 class NewsView(context: Context) : BaseHomeView(context) {
 
     var mView: View? = null
+    lateinit var dialog:MyProgressDialog
 
     override fun getView(): View {
         if (mView == null) {
             mView = View.inflate(context, R.layout.view_news, null)
         }
+        dialog= MyProgressDialog(context)
         return mView ?: View(context)
     }
 
 
     override fun initData() {
+        dialog.initDialog("加载中...")
         val callResponse = RetrofitNetHelper.getInstance(context)
                 .getAPIService(Api::class.java)
                 .requestNews(NEWS_URL, "财经", "40", "0", JDNEWS_APPKEY)
         RetrofitNetHelper.getInstance(context)
                 .enqueueNewsCall(callResponse, object : RetrofitNetHelper.RetrofitNewsCallBack<NewsResponse> {
                     override fun onSuccess(baseResp: BaseNewsResponse<NewsResponse>) {
+                        dialog.dissmisDialog()
+                        //去除pic为空的数据
+                        val arr = arrayListOf<NewsResponse.News>()
+                        baseResp.result.result.list
+                                .filter { !it.pic.equals("") }
+                                .forEach { arr.add(it) }
                         mView?.rc_view?.layoutManager = LinearLayoutManager(context)
-                        mView?.rc_view?.adapter = RCNewsAdapter(context, baseResp.result.result.list)
+                        mView?.rc_view?.adapter = RCNewsAdapter(context, arr)
+
                     }
 
                     override fun onFailure(error: String) {
+                        dialog.dissmisDialog()
                         Snackbar.make(mView?.rc_view!!, error, Snackbar.LENGTH_SHORT).show()
                         mView?.rc_view?.adapter = RCNewsAdapter(context, arrayListOf<NewsResponse.News>())
                     }

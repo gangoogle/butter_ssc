@@ -17,6 +17,7 @@ import android.preference.RingtonePreference
 import android.text.TextUtils
 import android.view.MenuItem
 import com.butter.butterssc.R
+import com.butter.butterssc.utils.ComUtils
 
 /**
  * A [PreferenceActivity] that presents a set of application settings. On

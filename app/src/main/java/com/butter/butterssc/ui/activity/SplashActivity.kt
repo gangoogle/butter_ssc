@@ -9,6 +9,7 @@ import android.os.Message
 import android.view.View
 import android.widget.Toast
 import com.butter.butterssc.R
+import com.butter.butterssc.utils.ComUtils
 import kotlinx.android.synthetic.main.activity_splash.*
 import java.util.*
 
@@ -68,8 +69,13 @@ class SplashActivity : AppCompatActivity() {
             when (msg?.what) {
                 0 -> {
                     Toast.makeText(mContext, "当前为最新版", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(mContext, MainActivity::class.java))
-                    finish()
+                    if (!ComUtils.getLoginInfo(mContext).email.equals("")) {
+                        startActivity(Intent(mContext, MainActivity::class.java))
+                        finish()
+                    } else {
+                        startActivity(Intent(mContext, LoginActivity::class.java))
+                        finish()
+                    }
                 }
             }
         }

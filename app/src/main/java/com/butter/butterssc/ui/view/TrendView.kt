@@ -18,7 +18,6 @@ class TrendView(context: Context) : BaseHomeView(context) {
 
     var mView: View? = null
 
-
     override fun getView(): View {
         if (mView == null) {
             mView = View.inflate(context, R.layout.view_trend, null)
@@ -30,6 +29,5 @@ class TrendView(context: Context) : BaseHomeView(context) {
         Log.d("yzg","trend view initData")
         mView?.rv_view?.layoutManager = LinearLayoutManager(context)
         mView?.rv_view?.adapter = RCTrendAdapter(context, getTrendItemData())
-
     }
 }
