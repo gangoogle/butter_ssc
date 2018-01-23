@@ -29,7 +29,7 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_arrow_back_black_24dp"/>
+                app:srcCompat="@drawable/ic_arrow_back_black_24dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -50,7 +50,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_face_black_24dp"/>
+            app:srcCompat="@drawable/ic_face_black_24dp"/>
 
         <TextView
             android:id="@+id/tv_user_eamil"
@@ -91,7 +91,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_filter_vintage_black_24dp"/>
+            app:srcCompat="@drawable/ic_filter_vintage_black_24dp"/>
 
         <TextView
             android:layout_width="0dp"
@@ -130,7 +130,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_favorite_border_black_24dp"/>
+            app:srcCompat="@drawable/ic_favorite_border_black_24dp"/>
 
         <TextView
             android:layout_width="0dp"
@@ -168,7 +168,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_speaker_notes_black_24dp"/>
+            app:srcCompat="@drawable/ic_speaker_notes_black_24dp"/>
 
         <TextView
             android:layout_width="0dp"
@@ -209,7 +209,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_mood_black_24dp"/>
+            app:srcCompat="@drawable/ic_mood_black_24dp"/>
 
         <TextView
             android:layout_width="0dp"
@@ -224,7 +224,7 @@
             android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:src="@drawable/ic_send_black_24dp"/>
+            app:srcCompat="@drawable/ic_send_black_24dp"/>
     </LinearLayout>
 
     <ImageView
@@ -244,7 +244,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_adb_black_24dp"
+            app:srcCompat="@drawable/ic_adb_black_24dp"
             />
 
         <TextView
@@ -265,7 +265,8 @@
             android:padding="4dp"
             android:text="v1.10(最新版本)"
             android:textColor="@color/gray"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            tools:ignore="DuplicateIds"/>
 
     </LinearLayout>
 </LinearLayout>

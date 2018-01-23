@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import com.butter.butterssc.R
@@ -36,7 +35,9 @@ class LotteryDetailActivity : AppCompatActivity() {
         }
         mCurrCaipiaoUrl = intent.getStringExtra("url")
         tv_title_l?.text = intent.getStringExtra("name")
-        fab_l.setOnClickListener { finish() }
+        fab_l.setOnClickListener {
+            finish()
+        }
         reqquestLottery()
         ComUtils.addScore(this, 2)
     }
@@ -51,13 +52,14 @@ class LotteryDetailActivity : AppCompatActivity() {
                 .enqueueCall(callResponse, object : RetrofitNetHelper.RetrofitCallBack<CaiPiaoResponse> {
                     override fun onSuccess(baseResp: BaseResp<CaiPiaoResponse>) {
                         dialog.dissmisDialog()
-                        rc_view_l.layoutManager = LinearLayoutManager(mContext)
-                        rc_view_l.adapter = RCLottertAdapter(mContext, baseResp.data)
+                        if(mContext!=null&&!isFinishing) {
+                            rc_view_l.layoutManager = LinearLayoutManager(mContext)
+                            rc_view_l.adapter = RCLottertAdapter(mContext, baseResp.data)
+                        }
                     }
 
                     override fun onFailure(error: String) {
                         dialog.dissmisDialog()
-                        rc_view_l.adapter = RCLottertAdapter(mContext, arrayListOf<CaiPiaoResponse>())
                         Toast.makeText(mContext, "数据拉取失败", Toast.LENGTH_SHORT).show()
                     }
                 })

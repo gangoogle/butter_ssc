@@ -23,7 +23,8 @@ class RCLottertAdapter(val context: Context, val lotterts: ArrayList<CaiPiaoResp
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_lottery_info, parent, false))
+        val view = LayoutInflater.from(context).inflate(R.layout.item_lottery_info, parent, false)
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {

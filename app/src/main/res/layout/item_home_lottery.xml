@@ -61,7 +61,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="开奖期号："
+                        android:text="期号："
                         android:textColor="@color/white"
                         android:textSize="16sp"/>
 
@@ -137,7 +137,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="开奖时间："
+                        android:text="时间："
                         android:textColor="@color/ub_gray_a"
                         android:textSize="12sp"/>
 
